@@ -13,3 +13,17 @@ var distDir = __dirname + "/dist/count/";
 app.use(express.static(distDir));
 
 // Rest of server.js code below
+
+// Generic error handler used by all endpoints.
+function handleError(res, reason, message, code) {
+  console.log("ERROR: " + reason);
+  res.status(code || 500).json({"error": message});
+}
+
+console.log("Connection ready");
+
+// Initialize the app.
+var server = app.listen(process.env.PORT || 8080, function () {
+	var port = server.address().port;
+	console.log("App now running on port", port);
+});
